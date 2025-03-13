@@ -1,41 +1,40 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-  const USER_STUDY = 0.3;
-  const USER_BREAK_1 = 0.1;
-  const USER_BREAK_2 = 0.2;
+  const USER_STUDY = 25;
+  const USER_BREAK_1 = 5;
+  const USER_BREAK_2 = 20;
   const STEPS = ['USER_STUDY', 'USER_BREAK_1', 'USER_STUDY', 'USER_BREAK_1', 'USER_STUDY', 'USER_BREAK_1', 'USER_STUDY', 'USER_BREAK_2'];
   
   var auto_start = document.getElementById('auto-start').checked;
 
-  var total_time = 0;
-  var total_pomodoros;
-
+  // Total time
+  var totalTime = 0;
+  // Total pomodoros
+  var totalPomodoros = 0;
   // Current time
-  var time;
+  var time = 0;
+  // Current step
+  var step = 0;
   // Current timer
   var timer;
-  // Current step
-  var step;
 
-  // Initialize the step
+  // Set the step
   function setStep({reload, autoStart}) {
     if (!reload) {
-      console.log(STEPS[step]);
-      if(!step || STEPS[step] === 'USER_STUDY') {
-        total_pomodoros = (total_pomodoros === undefined) ? 0 : ++total_pomodoros;
-        document.getElementById('num-pomodoros').innerHTML = total_pomodoros;
+      if(STEPS[step] === 'USER_STUDY') {
+        updateTotalPomodoros(totalPomodoros + 1);
       }
-      step = (step === undefined) ? 0 : ++step;
+      step = ++step;
     }
     step = step >= STEPS.length ? 0 : step;
     time = eval(STEPS[step]) * 60;
-    document.getElementById('step').innerHTML = STEPS[step] === 'USER_STUDY' ? 'Study' : 'Break';
+    document.getElementById('step').innerHTML = STEPS[step] === 'USER_STUDY' ? 'Fase de concentración' : 'Descanso';
     updateTimer();
     if (autoStart && !reload) {
       startTimer();
     }
   }
 
-  // Function that starts a countdown timer from 25 minutes to 0
+  // Function that starts a countdown timer from X minutes to 0
   function startTimer() {
     console.log('starting timer at step: ', step);
     document.getElementById('pause-resume-btn').removeEventListener('click', handleStartTimer);
@@ -44,7 +43,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     timer = setInterval(() => {
       updateTimer();
       time--;
-      total_time++;
+      totalTime++;
       if (time < 0) {
         reloadTimer(false, auto_start);
       }
@@ -54,20 +53,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
   // Update the timer
   function updateTimer() {
     // Update main timer
-    let minutes = Math.floor(time / 60);
-    let seconds = time % 60;
-    seconds = seconds < 10 ? `0${seconds}` : seconds;
-    document.getElementById('timer').innerHTML = `${minutes}:${seconds}`;
+    updateTimerValues({htmlId: 'timer', value: time});
     // Update the global timer
-    let totalMinutes = Math.floor(total_time / 60);
-    let totalSeconds = total_time % 60;
-    totalSeconds = totalSeconds < 10 ? `0${totalSeconds}` : totalSeconds;
-    document.getElementById('total-time').innerHTML = `${totalMinutes}:${totalSeconds}`;
+    updateTimerValues({htmlId: 'total-time', value: totalTime});
   }
 
   // Pause the timer that can be resumed
   function pauseTimer() {
-    console.log('pause');
     clearInterval(timer);
     document.getElementById('pause-resume-btn').removeEventListener('click', handlePauseTimer);
     document.getElementById('pause-resume-btn').innerHTML = 'Resume';
@@ -81,6 +73,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('pause-resume-btn').innerHTML = 'Start';
     document.getElementById('pause-resume-btn').addEventListener('click', handleStartTimer);
     setStep({reload: reload, autoStart: autoStart});
+  }
+
+  //Update total pomodoros
+  function updateTotalPomodoros(numPomodoros) {
+    totalPomodoros = numPomodoros;
+    document.getElementById('num-pomodoros').innerHTML = totalPomodoros;
+  }
+
+  // Update timer values
+  function updateTimerValues({htmlId, value}) {
+    let minutes = Math.floor(value / 60);
+    let seconds = value % 60;
+    seconds = seconds < 10 ? `0${seconds}` : seconds;
+    document.getElementById(htmlId).innerHTML = `${minutes}:${seconds}`;
   }
 
   function handleRestartTimer() {
@@ -99,16 +105,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
     reloadTimer(false, false);
   }
 
-  handleRestartValues = () => {
-    total_time = 0;
-    total_pomodoros = 0;
-    document.getElementById('num-pomodoros').innerHTML = total_pomodoros;
+  function handleRestartValues() {
+    totalTime = 0;
+    updateTotalPomodoros(0);
     step = 0;
     reloadTimer(true, false);
   }
 
   // Initialize the html elements and handlers
-  document.getElementById('num-pomodoros').innerHTML = total_pomodoros;
+  document.getElementById('num-pomodoros').innerHTML = totalPomodoros;
   document.getElementById('restart-btn').addEventListener('click', handleRestartTimer);
   document.getElementById('forward-btn').addEventListener('click', handleNextStep);
   document.getElementById('pause-resume-btn').addEventListener('click', handleStartTimer);
@@ -117,5 +122,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
     auto_start = event.target.checked;
   });
 
-  setStep({autoStart: false});
+  setStep({reload: true, autoStart: false});
 });
