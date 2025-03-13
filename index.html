@@ -36,27 +36,47 @@
     </section>
     <section id="statistics">
       <h2>Statistics</h2>
-      <div>
-        <label for="pomodoros">Pomodoros:</label>
-        <div id="num-pomodoros"></div>
-      </div>
-      <div>
-        <label for="total-time">Total time:</label>
-        <div id="total-time"></div> 
-      </div>
-      <div>
-        <label for="step">Currently:</label>
-        <div id="step"></div> 
+      <div class="statistics-container">
+        <div class="statistic">
+          <label for="pomodoros">Pomodoros:</label>
+          <div id="num-pomodoros"></div>
+        </div>
+        <div class="statistic">
+          <label for="total-time">Total time:</label>
+          <div id="total-time"></div> 
+        </div>
+        <div class="statistic">
+          <label for="step">Currently:</label>
+          <div id="step"></div> 
+        </div>
       </div>
     </section>
-    <!-- Main content goes here -->
-    <div id="timer"></div>
-    <button id="pause-resume-btn">Start</button>
-    <button id="restart-btn">Restart timer</button>
-    <button id="forward-btn">Next Step</button>
-    <input type="checkbox" id="auto-start">Auto start next step
+    <section id="timer-section">
+      <h2>Timer</h2>
+      <div id="timer-container">
+        <div id="timer-circle">
+          <div id="timer">25:00</div>
+        </div>
+      </div>
+      <div class="actions-section">
+        <div class="timer-buttons">
+          <button id="pause-resume-btn">Start</button>
+          <button id="restart-btn">Restart timer</button>
+          <button id="forward-btn">Next Step</button>
+        </div>
+        <div class="timer-buttons">
+          <label class="checkbox-container">
+            <input type="checkbox" id="auto-start">
+            <span class="checkbox-custom"></span>
+            Auto Start
+          </label>
+        </div>
+        <div class="timer-buttons">
+          <button id="restart-values">Reiniciar todos los valores</button>
+        </div>
+      </div>
+    </section>
     <div>
-      <button id="restart-values">Reiniciar todos los valores</button>
     </div>
   </main>
   <footer>

@@ -18,3 +18,133 @@ header {
   display: flex;
   justify-content: center;
 }
+
+#statistics {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.statistic {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 200px;
+}
+
+.statistics-container {
+  display: flex;
+  flex-direction: row;
+}
+#timer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#timer-container {
+  margin: 20px 0;
+  margin: 0px 0px 20px 0px;
+}
+
+#timer-circle {
+  width: 200px;
+  height: 200px;
+  border: 5px solid #000;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#timer {
+  font-size: 2em;
+}
+
+.timer-buttons {
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+}
+
+button {
+  margin: 5px;
+  width: 200px;
+  padding: 10px 20px;
+  font-size: 0.8em;
+  cursor: pointer;
+  background-color: #B7B7B7; /* Color de fondo */
+  color: #fff; /* Color del texto */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+  transition: background-color 0.3s, transform 0.3s; /* Transiciones */
+}
+
+button:hover {
+  background-color: #6A6A6A; /* Color de fondo al pasar el ratón */
+  transform: translateY(-2px); /* Efecto de elevación al pasar el ratón */
+}
+
+button:active {
+  background-color: #555555; /* Color de fondo al hacer clic */
+  transform: translateY(0); /* Sin elevación al hacer clic */
+}
+
+/* Estilo para el contenedor del checkbox */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 0.8em;
+  gap: 10px;
+}
+
+/* Ocultar el checkbox original */
+.checkbox-container input[type="checkbox"] {
+  display: none;
+}
+
+/* Estilo para el checkbox personalizado */
+.checkbox-custom {
+  width: 20px;
+  height: 20px;
+  background-color: #B7B7B7;
+  border-radius: 5px;
+  position: relative;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Estilo para el estado marcado del checkbox */
+.checkbox-container input[type="checkbox"]:checked + .checkbox-custom {
+  background-color: #555555;
+}
+
+/* Estilo para el icono de verificación */
+.checkbox-custom::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: translate(-50%, -50%) rotate(45deg);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Mostrar el icono de verificación cuando el checkbox está marcado */
+.checkbox-container input[type="checkbox"]:checked + .checkbox-custom::after {
+  opacity: 1;
+}
+
+.actions-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap:15px;
+}
