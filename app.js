@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const USER_BREAK_1 = 5;
   const USER_BREAK_2 = 20;
   const STEPS = ['USER_STUDY', 'USER_BREAK_1', 'USER_STUDY', 'USER_BREAK_1', 'USER_STUDY', 'USER_BREAK_1', 'USER_STUDY', 'USER_BREAK_2'];
+  const audio = new Audio('./assets/sounds/timer.mp3');
   
   var auto_start = document.getElementById('auto-start').checked;
 
@@ -44,6 +45,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
       updateTimer();
       time--;
       totalTime++;
+      if(time === 10) {
+        playTimerSound();
+      }
       if (time < 0) {
         reloadTimer(false, auto_start);
       }
@@ -110,6 +114,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
     updateTotalPomodoros(0);
     step = 0;
     reloadTimer(true, false);
+  }
+
+  function playTimerSound() {
+    audio
+      .play()
+      .then(() => console.log('Sound played'))
+      .catch((error) => console.error('Error playing sound', error));
   }
 
   // Initialize the html elements and handlers
