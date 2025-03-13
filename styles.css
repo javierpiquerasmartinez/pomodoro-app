@@ -1,5 +1,6 @@
 * {
   font-family: 'Poppins', sans-serif;
+  color: #2f2f2f; /* Color de la fuente */
 }
 html {
   background: #E5E5E5;
@@ -37,6 +38,7 @@ header {
 .statistics-container {
   display: flex;
   flex-direction: row;
+  font-size: 0.8em;
 }
 #timer-section {
   display: flex;
@@ -53,6 +55,7 @@ header {
   width: 200px;
   height: 200px;
   border: 5px solid #000;
+  opacity: 0.7;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -147,4 +150,12 @@ button:active {
   flex-direction: column;
   align-items: center;
   gap:15px;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  background-color: #B7B7B7;
+  color: #fff;
 }
