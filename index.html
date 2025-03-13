@@ -15,10 +15,41 @@
     <h1>Pomodoro App</h1>
   </header>
   <main>
+    <section id="parameters" hidden>
+      <h2>Parameters</h2>
+      <div>
+        <label for="study-time">Study time:</label>
+        <input type="number" id="study-time" value="25">
+      </div>
+      <div>
+        <label for="short-break">Short break:</label>
+        <input type="number" id="short-break" value="5">
+      </div>
+      <div>
+        <label for="long-break">Long break:</label>
+        <input type="number" id="long-break" value="15">
+      </div>
+      <div>
+        <label for="long-break-interval">Long break interval:</label>
+        <input type="number" id="long-break-interval" value="4">
+      </div>
+    </section>
+    <section id="statistics">
+      <h2>Statistics</h2>
+      <div>
+        <label for="pomodoros">Pomodoros:</label>
+        <div id="num-pomodoros"></div>
+      </div>
+      <div>
+        <label for="total-time">Total time:</label>
+        <div id="total-time"></div> 
+      </div>
+      <div>
+        <label for="step">Currently:</label>
+        <div id="step"></div> 
+      </div>
+    </section>
     <!-- Main content goes here -->
-    <div>Número de Pomodoros hechos: </div><div id="num-pomodoros"></div>
-    <div>Total tiempo de estudio: </div><div id="total-time"></div> 
-    <div>Fase actual: </div><div id="step"></div>
     <div id="timer"></div>
     <button id="pause-resume-btn">Start</button>
     <button id="restart-btn">Restart timer</button>
@@ -29,7 +60,7 @@
     </div>
   </main>
   <footer>
-    <p>&copy; 2023 Pomodoro App. All rights reserved.</p>
+    <p>&copy; 2025 Pomodoro App. Developed by Javier Piqueras Martinez.</p>
   </footer>
 </body>
 </html>

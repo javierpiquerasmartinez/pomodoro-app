@@ -3,4 +3,18 @@
 }
 html {
   background: #E5E5E5;
+  height: 100vh;
+}
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+main {
+  height: 100%;
+}
+header {
+  display: flex;
+  justify-content: center;
 }
