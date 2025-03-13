@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
     step = step >= STEPS.length ? 0 : step;
     time = eval(STEPS[step]) * 60;
-    document.getElementById('step').innerHTML = STEPS[step] === 'USER_STUDY' ? 'Fase de concentración' : 'Descanso';
+    document.getElementById('step').innerHTML = STEPS[step] === 'USER_STUDY' ? 'Fase de concentración' : 'Descansando';
     updateTimer();
     if (autoStart && !reload) {
       startTimer();
