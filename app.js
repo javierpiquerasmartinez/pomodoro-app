@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const USER_STUDY = 0.3;
   const USER_BREAK_1 = 0.1;
   const USER_BREAK_2 = 0.2;
-  const STEPS = [USER_STUDY, USER_BREAK_1, USER_STUDY, USER_BREAK_1, USER_STUDY, USER_BREAK_1, USER_STUDY, USER_BREAK_2];
+  const STEPS = ['USER_STUDY', 'USER_BREAK_1', 'USER_STUDY', 'USER_BREAK_1', 'USER_STUDY', 'USER_BREAK_1', 'USER_STUDY', 'USER_BREAK_2'];
   
   var auto_start = document.getElementById('auto-start').checked;
 
@@ -18,15 +18,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   // Initialize the step
   function setStep({reload, autoStart}) {
-    console.log('step1: ', step, reload, autoStart);
     if (!reload) {
+      console.log(STEPS[step]);
+      if(!step || STEPS[step] === 'USER_STUDY') {
+        total_pomodoros = (total_pomodoros === undefined) ? 0 : ++total_pomodoros;
+        document.getElementById('num-pomodoros').innerHTML = total_pomodoros;
+      }
       step = (step === undefined) ? 0 : ++step;
-      total_pomodoros = (total_pomodoros === undefined) ? 0 : ++total_pomodoros;
-      document.getElementById('num-pomodoros').innerHTML = total_pomodoros;
     }
     step = step >= STEPS.length ? 0 : step;
-    time = STEPS[step] * 60;
-    document.getElementById('step').innerHTML = STEPS[step] === USER_STUDY ? 'Study' : 'Break';
+    time = eval(STEPS[step]) * 60;
+    document.getElementById('step').innerHTML = STEPS[step] === 'USER_STUDY' ? 'Study' : 'Break';
     updateTimer();
     if (autoStart && !reload) {
       startTimer();
