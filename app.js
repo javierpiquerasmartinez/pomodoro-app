@@ -99,11 +99,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
     reloadTimer(false, false);
   }
 
+  handleRestartValues = () => {
+    total_time = 0;
+    total_pomodoros = 0;
+    document.getElementById('num-pomodoros').innerHTML = total_pomodoros;
+    step = 0;
+    reloadTimer(true, false);
+  }
+
   // Initialize the html elements and handlers
   document.getElementById('num-pomodoros').innerHTML = total_pomodoros;
   document.getElementById('restart-btn').addEventListener('click', handleRestartTimer);
   document.getElementById('forward-btn').addEventListener('click', handleNextStep);
   document.getElementById('pause-resume-btn').addEventListener('click', handleStartTimer);
+  document.getElementById('restart-values').addEventListener('click', handleRestartValues)
   document.getElementById('auto-start').addEventListener('change', (event) => {
     auto_start = event.target.checked;
   });
