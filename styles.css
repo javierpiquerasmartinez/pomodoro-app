@@ -159,3 +159,10 @@ footer {
   background-color: #B7B7B7;
   color: #fff;
 }
+
+.footer-text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
