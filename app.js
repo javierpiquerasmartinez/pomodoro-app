@@ -5,7 +5,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const STEPS = [USER_STUDY, USER_BREAK_1, USER_STUDY, USER_BREAK_1, USER_STUDY, USER_BREAK_1, USER_STUDY, USER_BREAK_2];
   
   var auto_start = document.getElementById('auto-start').checked;
-  
+
+  var total_time = 0;
+  var total_pomodoros;
+
   // Current time
   var time;
   // Current timer
@@ -18,6 +21,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     console.log('step1: ', step, reload, autoStart);
     if (!reload) {
       step = (step === undefined) ? 0 : ++step;
+      total_pomodoros = (total_pomodoros === undefined) ? 0 : ++total_pomodoros;
+      document.getElementById('num-pomodoros').innerHTML = total_pomodoros;
     }
     step = step >= STEPS.length ? 0 : step;
     time = STEPS[step] * 60;
@@ -37,6 +42,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     timer = setInterval(() => {
       updateTimer();
       time--;
+      total_time++;
       if (time < 0) {
         reloadTimer(false, auto_start);
       }
@@ -45,10 +51,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   // Update the timer
   function updateTimer() {
+    // Update main timer
     let minutes = Math.floor(time / 60);
     let seconds = time % 60;
     seconds = seconds < 10 ? `0${seconds}` : seconds;
     document.getElementById('timer').innerHTML = `${minutes}:${seconds}`;
+    // Update the global timer
+    let totalMinutes = Math.floor(total_time / 60);
+    let totalSeconds = total_time % 60;
+    totalSeconds = totalSeconds < 10 ? `0${totalSeconds}` : totalSeconds;
+    document.getElementById('total-time').innerHTML = `${totalMinutes}:${totalSeconds}`;
   }
 
   // Pause the timer that can be resumed
@@ -85,7 +97,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     reloadTimer(false, false);
   }
 
-  // Initialize the buttons
+  // Initialize the html elements and handlers
+  document.getElementById('num-pomodoros').innerHTML = total_pomodoros;
   document.getElementById('restart-btn').addEventListener('click', handleRestartTimer);
   document.getElementById('forward-btn').addEventListener('click', handleNextStep);
   document.getElementById('pause-resume-btn').addEventListener('click', handleStartTimer);
