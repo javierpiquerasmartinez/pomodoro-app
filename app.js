@@ -24,9 +24,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
       if(STEPS[step] === 'USER_STUDY') {
         updateTotalPomodoros(totalPomodoros + 1);
       }
-      step = ++step;
+      step++;
     }
     step = step >= STEPS.length ? 0 : step;
+    updateIcons();
     time = eval(STEPS[step]) * 60;
     document.getElementById('step').innerHTML = STEPS[step] === 'USER_STUDY' ? 'Fase de concentración' : 'Descansando';
     updateTimer();
@@ -114,6 +115,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     updateTotalPomodoros(0);
     step = 0;
     reloadTimer(true, false);
+    updateIcons();
   }
 
   function playTimerSound() {
@@ -121,6 +123,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
       .play()
       .then(() => console.log('Sound played'))
       .catch((error) => console.error('Error playing sound', error));
+  }
+
+  function updateIcons() {
+    document.getElementById('step-icon').innerHTML = STEPS[step] === 'USER_STUDY' ? '🙇🏻‍♂️' : '☕️';
   }
 
   // Initialize the html elements and handlers
