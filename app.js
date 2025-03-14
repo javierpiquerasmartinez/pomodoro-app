@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   function startTimer() {
     console.log('starting timer at step: ', step);
     document.getElementById('pause-resume-btn').removeEventListener('click', handleStartTimer);
-    document.getElementById('pause-resume-btn').innerHTML = 'Pause';
+    document.getElementById('pause-resume-btn').innerHTML = 'Pausar';
     document.getElementById('pause-resume-btn').addEventListener('click', handlePauseTimer);
     timer = setInterval(() => {
       updateTimer();
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   function pauseTimer() {
     clearInterval(timer);
     document.getElementById('pause-resume-btn').removeEventListener('click', handlePauseTimer);
-    document.getElementById('pause-resume-btn').innerHTML = 'Resume';
+    document.getElementById('pause-resume-btn').innerHTML = 'Reanudar';
     document.getElementById('pause-resume-btn').addEventListener('click', handleStartTimer);
   }
 
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   function reloadTimer(reload, autoStart) {
     clearInterval(timer);
     document.getElementById('pause-resume-btn').removeEventListener('click', handlePauseTimer);
-    document.getElementById('pause-resume-btn').innerHTML = 'Start';
+    document.getElementById('pause-resume-btn').innerHTML = 'Empezar';
     document.getElementById('pause-resume-btn').addEventListener('click', handleStartTimer);
     setStep({reload: reload, autoStart: autoStart});
   }
