@@ -6,8 +6,8 @@ The Pomodoro App is a time management tool that helps you increase productivity 
 
 ## Features
 
-- **Customizable Pomodoro Intervals**: Set your preferred work and break durations.
-- **Task Management**: Add, edit, and delete tasks.
+- **Customizable Pomodoro Intervals**: Set your preferred work and break durations. [Work in progress]
+- **Task Management**: Add, edit, and delete tasks. [Work in progress]
 - **Notifications**: Get notified when it's time to take a break or start working.
 - **Statistics**: Track your productivity over time.
 
@@ -78,4 +78,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 
-For any questions or suggestions, please open an issue or contact [your-email@example.com](mailto:your-email@example.com).
+For any questions or suggestions, please open an issue or contact [javierpiquerasmartinez@gmail.com](mailto:javierpiquerasmartinez@gmail.com).
