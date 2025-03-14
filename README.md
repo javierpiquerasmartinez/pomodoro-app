@@ -1,5 +1,7 @@
 # Pomodoro App
 
+![Pomodoro App Screenshot](/assets/images/246shots_so.png)
+
 ## Overview
 
 The Pomodoro App is a time management tool that helps you increase productivity by breaking work into intervals, traditionally 25 minutes in length, separated by short breaks.
