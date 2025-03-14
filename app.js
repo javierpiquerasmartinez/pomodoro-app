@@ -59,6 +59,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
   function updateTimer() {
     // Update main timer
     updateTimerValues({htmlId: 'timer', value: time});
+    // Update the Page Title
+    updateTimerValues({htmlId: 'title', value: time, isTitle: true});
     // Update the global timer
     updateTimerValues({htmlId: 'total-time', value: totalTime});
   }
@@ -87,11 +89,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }
 
   // Update timer values
-  function updateTimerValues({htmlId, value}) {
+  function updateTimerValues({htmlId, value, isTitle}) {
     let minutes = Math.floor(value / 60);
     let seconds = value % 60;
     seconds = seconds < 10 ? `0${seconds}` : seconds;
-    document.getElementById(htmlId).innerHTML = `${minutes}:${seconds}`;
+    let displayValue = `${minutes}:${seconds}`;
+  
+    if (isTitle && document.hidden) {
+      document.getElementById(htmlId).innerHTML = `(${displayValue}) 🍅 Pomodoro App`;
+    } else if(!isTitle) {
+      document.getElementById(htmlId).innerHTML = displayValue;
+    }
   }
 
   function handleRestartTimer() {
@@ -138,6 +146,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
   document.getElementById('auto-start').addEventListener('change', (event) => {
     auto_start = event.target.checked;
   });
+
+  // Check if the browser tab is active
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+      document.getElementById('title').innerHTML = '🍅 Pomodoro App';
+    }
+  })
 
   setStep({reload: true, autoStart: false});
 });
