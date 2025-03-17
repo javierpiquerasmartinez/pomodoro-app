@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   // Current timer
   var timer;
   // Dark Mode boolean variable
-  var darkMode = false;
+  var darkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
   // Set the step
   function setStep({reload, autoStart}) {
@@ -164,5 +164,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
   })
 
+  // Initial functions
+  handleChangeMode()
   setStep({reload: true, autoStart: false});
 });
