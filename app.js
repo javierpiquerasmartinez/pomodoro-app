@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const USER_BREAK_1 = 5;
   const USER_BREAK_2 = 20;
   const STEPS = ['USER_STUDY', 'USER_BREAK_1', 'USER_STUDY', 'USER_BREAK_1', 'USER_STUDY', 'USER_BREAK_1', 'USER_STUDY', 'USER_BREAK_2'];
-  const audio = new Audio('./assets/sounds/timer.mp3');
+  const timerSound = new Audio('./assets/sounds/timer.mp3');
+  const clickSound = new Audio('./assets/sounds/click.mp3');
   
   var auto_start = document.getElementById('auto-start').checked;
 
@@ -111,10 +112,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }
 
   function handleStartTimer() {
+    clickSound.play();
     startTimer();
   }
 
   function handlePauseTimer() {
+    clickSound.play();
     pauseTimer();
   }
 
@@ -136,7 +139,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }
 
   function playTimerSound() {
-    audio
+    timerSound
       .play()
       .then(() => console.log('Sound played'))
       .catch((error) => console.error('Error playing sound', error));
