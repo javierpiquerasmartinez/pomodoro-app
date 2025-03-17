@@ -45,9 +45,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('pause-resume-btn').innerHTML = 'Pausar';
     document.getElementById('pause-resume-btn').addEventListener('click', handlePauseTimer);
     timer = setInterval(() => {
-      updateTimer();
       time--;
       totalTime++;
+      updateTimer();
       if(time === 10) {
         playTimerSound();
       }
