@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
   var step = 0;
   // Current timer
   var timer;
+  // Dark Mode boolean variable
+  var darkMode = false;
 
   // Set the step
   function setStep({reload, autoStart}) {
@@ -126,6 +128,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
     updateIcons();
   }
 
+  function handleChangeMode() {
+    darkMode = !darkMode;
+    document.body.classList.toggle('dark-mode', darkMode);
+  }
+
   function playTimerSound() {
     audio
       .play()
@@ -138,6 +145,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }
 
   // Initialize the html elements and handlers
+  document.getElementById('dark-light-mode').addEventListener('click', handleChangeMode)
   document.getElementById('num-pomodoros').innerHTML = totalPomodoros;
   document.getElementById('restart-btn').addEventListener('click', handleRestartTimer);
   document.getElementById('forward-btn').addEventListener('click', handleNextStep);

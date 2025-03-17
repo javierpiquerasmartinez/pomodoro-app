@@ -1,6 +1,6 @@
+/* Estilos generales */
 * {
   font-family: 'Poppins', sans-serif;
-  color: #2f2f2f; /* Color de la fuente */
 }
 html {
   background: #E5E5E5;
@@ -12,19 +12,33 @@ body {
   flex-direction: column;
   justify-content: space-between;
   margin: 0;
+  color: #4F4E4E; /* Color de la fuente */
+  transition: background-color 0.3s, transform 0.3s; /* Transiciones */
 }
+
 main {
   height: 100%;
 }
+
 header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+
+aside {
+  width: 100px;
 }
 
 #statistics {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#dark-light-mode {
+  width: auto;
 }
 
 .statistic {
@@ -156,7 +170,6 @@ button:active {
 footer {
   display: flex;
   justify-content: center;
-  padding: 10px;
   background-color: #B7B7B7;
   color: #fff;
 }
@@ -166,4 +179,41 @@ footer {
   flex-direction: row;
   align-items: center;
   gap: 5px;
+}
+
+/* Modo oscuro */
+body.dark-mode {
+  background: #3A3A3A;
+  color: #E5E5E5;
+}
+
+body.dark-mode header,
+body.dark-mode .statistic,
+body.dark-mode .statistics-container,
+body.dark-mode #timer-section,
+body.dark-mode #timer-container,
+body.dark-mode #timer-circle,
+body.dark-mode .actions-section,
+body.dark-mode .timer-buttons,
+body.dark-mode button,
+body.dark-mode .checkbox-container {
+  color: #E5E5E5;
+}
+
+body.dark-mode footer {
+  background: #494949;
+  color: #E5E5E5;
+}
+
+body.dark-mode button {
+  background-color: #555555;
+  color: #E5E5E5;
+}
+
+body.dark-mode button:hover {
+  background-color: #6A6A6A;
+}
+
+body.dark-mode button:active {
+  background-color: #4F4F4F;
 }
