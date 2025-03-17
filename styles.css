@@ -2,18 +2,20 @@
 * {
   font-family: 'Poppins', sans-serif;
 }
+
 html {
   background: #E5E5E5;
   height: 100vh;
 }
+
 body {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin: 0;
-  color: #4F4E4E; /* Color de la fuente */
-  transition: background-color 0.3s, transform 0.3s; /* Transiciones */
+  color: #4F4E4E;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 main {
