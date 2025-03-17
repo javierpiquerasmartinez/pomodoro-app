@@ -92,10 +92,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   // Update timer values
   function updateTimerValues({htmlId, value, isTitle}) {
-    let minutes = Math.floor(value / 60);
+    let hours = Math.floor(value / 60 / 60);
+    let minutes = Math.floor(value / 60) % 60;
     let seconds = value % 60;
+    minutes = hours && minutes < 10 ? `0${minutes}` : minutes;
     seconds = seconds < 10 ? `0${seconds}` : seconds;
-    let displayValue = `${minutes}:${seconds}`;
+    let displayValue = `${hours ? hours + ':' : ''}${minutes}:${seconds}`;
   
     if (isTitle && document.hidden) {
       document.getElementById(htmlId).innerHTML = `(${displayValue}) 🍅 Pomodoro App`;
