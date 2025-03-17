@@ -190,6 +190,10 @@ body.dark-mode {
   color: #E5E5E5;
 }
 
+body.dark-mode a {
+  color: #989898;
+}
+
 body.dark-mode footer {
   background: #494949;
 }
