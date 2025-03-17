@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const STEPS = ['USER_STUDY', 'USER_BREAK_1', 'USER_STUDY', 'USER_BREAK_1', 'USER_STUDY', 'USER_BREAK_1', 'USER_STUDY', 'USER_BREAK_2'];
   const timerSound = new Audio('./assets/sounds/timer.mp3');
   const clickSound = new Audio('./assets/sounds/click.mp3');
+  const reinitializeSound = new Audio('./assets/sounds/trash.mp3');
+  const restartSound = new Audio('./assets/sounds/backwards.mp3');
+  const nextStepSound = new Audio('./assets/sounds/whistle.mp3');
   
   var auto_start = document.getElementById('auto-start').checked;
 
@@ -108,6 +111,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }
 
   function handleRestartTimer() {
+    restartSound.play();
     reloadTimer(true);
   }
 
@@ -122,10 +126,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }
 
   function handleNextStep() {
+    nextStepSound.play();
     reloadTimer(false, false);
   }
 
   function handleRestartValues() {
+    reinitializeSound.play();
     totalTime = 0;
     updateTotalPomodoros(0);
     step = 0;
