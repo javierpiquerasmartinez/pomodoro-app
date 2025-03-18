@@ -77,7 +77,6 @@ aside {
 }
 
 #timer-container {
-  margin: 20px 0;
   margin: 0px 0px 20px 0px;
 }
 
@@ -194,6 +193,7 @@ footer {
 
 /* Estilos para el menú desplazable */
 .side-menu {
+  z-index: 1;
   height: 100%;
   width: 250px;
   position: fixed;
