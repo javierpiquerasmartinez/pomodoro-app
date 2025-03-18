@@ -196,7 +196,8 @@ footer {
   background-color: #B7B7B7;
   overflow-x: hidden;
   transition: 0.5s;
-  padding-top: 60px;
+  padding: 60px 20px 0px 20px;
+  box-sizing: border-box;
 }
 
 .side-menu.open {
@@ -220,7 +221,7 @@ body.dark-mode a {
   color: #989898;
 }
 
-body.dark-mode .side-menu, footer {
+body.dark-mode .side-menu, body.dark-mode footer {
   background: #494949;
 }
 
