@@ -250,4 +250,5 @@ body.dark-mode button:active {
 
 #temp-settings {
   width: auto;
+  padding: 2px 8px;
 }
