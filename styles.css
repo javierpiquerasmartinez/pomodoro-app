@@ -11,6 +11,12 @@ h1 {
   text-align: center;
 }
 
+h3 {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
 body {
   height: 100%;
   display: flex;
@@ -200,6 +206,12 @@ footer {
   box-sizing: border-box;
 }
 
+#parameters {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .side-menu.open {
   left: 0;
 }
@@ -252,4 +264,44 @@ body.dark-mode button:active {
 #temp-settings {
   width: auto;
   padding: 2px 8px;
+}
+
+/* Estilos generales para los input */
+input {
+  width: 70px;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus {
+  border-color: #555;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Modo oscuro */
+body.dark-mode input {
+  background-color: #555;
+  color: #E5E5E5;
+  border: 1px solid #444;
+}
+
+body.dark-mode input:focus {
+  border-color: #888;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+#parameters-save-btn {
+  width: auto;
+  margin: 0px;
+}
+
+.input-params-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }

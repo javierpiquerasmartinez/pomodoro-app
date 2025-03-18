@@ -21,26 +21,26 @@
     </aside>
   </header>
   <div id="side-menu" class="side-menu">
-    <section id="parameters">
+    <form id="parameters">
       <h3>⚙️ Configuración del temporizador</h3>
-      <div>
+      <div class="input-params-container">
         <label for="study-time">Concentración:</label>
         <input type="number" id="study-time" value="25">
       </div>
-      <div>
+      <div class="input-params-container">
         <label for="short-break">Descanso:</label>
         <input type="number" id="short-break" value="5">
       </div>
-      <div>
+      <div class="input-params-container">
         <label for="long-break">Descanso largo:</label>
         <input type="number" id="long-break" value="20">
       </div>
-      <div>
+      <div class="input-params-container">
         <label for="long-break-interval">Intervalo:</label>
         <input type="number" id="long-break-interval" value="4">
       </div>
-      <button>💾 Guardar</button>
-    </section>
+      <button type="submit" id="parameters-save-btn">💾 Guardar</button>
+    </form>
   </div>
   <main>
     <section id="statistics">
