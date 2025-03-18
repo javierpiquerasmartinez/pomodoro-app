@@ -186,7 +186,7 @@ button:active {
 footer {
   display: flex;
   justify-content: center;
-  background-color: #B7B7B7;
+  background-color: #cbcbcb;
   color: #fff;
   transition: background-color 0.3s, transform 0.3s;
 }
@@ -199,7 +199,7 @@ footer {
   position: fixed;
   top: 0;
   left: -250px;
-  background-color: #B7B7B7;
+  background-color: #cbcbcb;
   overflow-x: hidden;
   transition: 0.5s;
   padding: 60px 20px 0px 20px;
