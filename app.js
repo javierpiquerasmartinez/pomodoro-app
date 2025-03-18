@@ -1,8 +1,4 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-  const USER_STUDY = 25;
-  const USER_BREAK_1 = 5;
-  const USER_BREAK_2 = 20;
-  const STEPS = ['USER_STUDY', 'USER_BREAK_1', 'USER_STUDY', 'USER_BREAK_1', 'USER_STUDY', 'USER_BREAK_1', 'USER_STUDY', 'USER_BREAK_2'];
   const timerSound = new Audio('./assets/sounds/timer.mp3');
   const clickSound = new Audio('./assets/sounds/click.mp3');
   const reinitializeSound = new Audio('./assets/sounds/trash.mp3');
@@ -10,6 +6,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const nextStepSound = new Audio('./assets/sounds/whistle.mp3');
   
   var auto_start = document.getElementById('auto-start').checked;
+  
+  var STEPS = ['USER_STUDY', 'USER_BREAK_1', 'USER_STUDY', 'USER_BREAK_1', 'USER_STUDY', 'USER_BREAK_1', 'USER_STUDY', 'USER_BREAK_2'];
+  var USER_STUDY = 25;
+  var USER_BREAK_1 = 5;
+  var USER_BREAK_2 = 20;
 
   // Total time
   var totalTime = 0;
@@ -144,6 +145,21 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.body.classList.toggle('dark-mode', darkMode);
   }
 
+  function handleSetParams(event) {
+    event.preventDefault();
+    USER_STUDY = document.getElementById('study-time').value;
+    USER_BREAK_1 = document.getElementById('short-break').value;
+    USER_BREAK_2 = document.getElementById('long-break').value;
+    let interval = document.getElementById('long-break-interval').value;
+    let steps = [];
+    for(i = 0; i < interval; i++) {
+      steps = steps.concat(i === interval - 1 ? ['USER_STUDY', 'USER_BREAK_2'] : ['USER_STUDY', 'USER_BREAK_1'])
+    }
+    step = 0;
+    STEPS = steps;
+    reloadTimer(true);
+  }
+
   function playTimerSound() {
     timerSound
       .play()
@@ -165,6 +181,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   document.getElementById('auto-start').addEventListener('change', (event) => {
     auto_start = event.target.checked;
   });
+  document.getElementById('parameters-save-btn').addEventListener('click', handleSetParams);
 
   // Check if the browser tab is active
   document.addEventListener('visibilitychange', () => {
