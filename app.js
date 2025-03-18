@@ -181,7 +181,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
   document.getElementById('auto-start').addEventListener('change', (event) => {
     auto_start = event.target.checked;
   });
-  document.getElementById('parameters-save-btn').addEventListener('click', handleSetParams);
+  //document.getElementById('parameters-save-btn').addEventListener('click', handleSetParams);
+  document.getElementById('parameters').addEventListener('submit', handleSetParams);
 
   // Check if the browser tab is active
   document.addEventListener('visibilitychange', () => {
