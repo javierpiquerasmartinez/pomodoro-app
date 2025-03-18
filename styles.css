@@ -13,7 +13,7 @@ h1 {
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -218,8 +218,14 @@ body.dark-mode button:active {
   background-color: #4F4F4F;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 500px) {
   #statistics {
     display: none;
+  }
+  footer {
+    display: none;
+  }
+  body {
+    justify-content: flex-start;
   }
 }
