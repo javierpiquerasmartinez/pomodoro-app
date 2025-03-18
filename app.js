@@ -7,15 +7,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
   
   var auto_start = document.getElementById('auto-start').checked;
   
-  var STEPS = ['USER_STUDY', 'USER_BREAK_1', 'USER_STUDY', 'USER_BREAK_1', 'USER_STUDY', 'USER_BREAK_1', 'USER_STUDY', 'USER_BREAK_2'];
-  var USER_STUDY = 25;
-  var USER_BREAK_1 = 5;
-  var USER_BREAK_2 = 20;
+  var STEPS = loadStepsFromInterval(Number(localStorage.getItem('pomodoroApp.steps')));
+  var USER_STUDY = Number(localStorage.getItem('pomodoroApp.userStudyTime') || 25);
+  var USER_BREAK_1 = Number(localStorage.getItem('pomodoroApp.userBreak1Time') || 5);
+  var USER_BREAK_2 = Number(localStorage.getItem('pomodoroApp.userBreak2Time') || 20);
 
   // Total time
-  var totalTime = 0;
+  var totalTime = Number(localStorage.getItem('pomodoroApp.totalTime') || 0);
   // Total pomodoros
-  var totalPomodoros = 0;
+  var totalPomodoros = Number(localStorage.getItem('pomodoroApp.totalPomodoros') || 0);
   // Current time
   var time = 0;
   // Current step
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('pause-resume-btn').addEventListener('click', handlePauseTimer);
     timer = setInterval(() => {
       time--;
-      totalTime++;
+      updateTotalTime(totalTime + 1);
       updateTimer();
       if(time === 10) {
         playTimerSound();
@@ -92,6 +92,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   //Update total pomodoros
   function updateTotalPomodoros(numPomodoros) {
     totalPomodoros = numPomodoros;
+    localStorage.setItem('pomodoroApp.totalPomodoros', totalPomodoros)
     document.getElementById('num-pomodoros').innerHTML = totalPomodoros;
   }
 
@@ -109,6 +110,22 @@ document.addEventListener('DOMContentLoaded', (event) => {
     } else if(!isTitle) {
       document.getElementById(htmlId).innerHTML = displayValue;
     }
+  }
+
+  function loadStepsFromInterval(interval) {
+    if(interval){
+      let steps = [];
+      for(i = 0; i < interval; i++) {
+        steps = steps.concat(i === interval - 1 ? ['USER_STUDY', 'USER_BREAK_2'] : ['USER_STUDY', 'USER_BREAK_1'])
+      }
+      return steps;
+    }
+    return ['USER_STUDY', 'USER_BREAK_1', 'USER_STUDY', 'USER_BREAK_1', 'USER_STUDY', 'USER_BREAK_1', 'USER_STUDY', 'USER_BREAK_2']
+  }
+
+  function updateTotalTime(time) {
+    totalTime = time;
+    localStorage.setItem('pomodoroApp.totalTime', totalTime);
   }
 
   function handleRestartTimer() {
@@ -133,7 +150,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   function handleRestartValues() {
     reinitializeSound.play();
-    totalTime = 0;
+    updateTotalTime(0);
     updateTotalPomodoros(0);
     step = 0;
     reloadTimer(true, false);
@@ -148,15 +165,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
   function handleSetParams(event) {
     event.preventDefault();
     USER_STUDY = document.getElementById('study-time').value;
+    localStorage.setItem('pomodoroApp.userStudyTime', USER_STUDY);
     USER_BREAK_1 = document.getElementById('short-break').value;
+    localStorage.setItem('pomodoroApp.userBreak1Time', USER_BREAK_1);
     USER_BREAK_2 = document.getElementById('long-break').value;
+    localStorage.setItem('pomodoroApp.userBreak2Time', USER_BREAK_2);
     let interval = document.getElementById('long-break-interval').value;
-    let steps = [];
-    for(i = 0; i < interval; i++) {
-      steps = steps.concat(i === interval - 1 ? ['USER_STUDY', 'USER_BREAK_2'] : ['USER_STUDY', 'USER_BREAK_1'])
-    }
+    localStorage.setItem('pomodoroApp.interval', interval);
+    STEPS = loadStepsFromInterval(interval);
     step = 0;
-    STEPS = steps;
     reloadTimer(true);
   }
 
@@ -169,6 +186,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   function updateIcons() {
     document.getElementById('step-icon').innerHTML = STEPS[step] === 'USER_STUDY' ? '🙇🏻‍♂️' : '☕️';
+  }
+
+  function loadInputTimeValues(){
+    document.getElementById('study-time').value = USER_STUDY;
+    document.getElementById('short-break').value = USER_BREAK_1;
+    document.getElementById('long-break').value = USER_BREAK_2;
+    document.getElementById('long-break-interval').value = localStorage.getItem('pomodoroApp.interval') || 4;
   }
 
   // Initialize the html elements and handlers
@@ -200,5 +224,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   // Initial functions
   handleChangeMode()
+  loadInputTimeValues()
   setStep({reload: true, autoStart: false});
 });
