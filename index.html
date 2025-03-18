@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title id="title">🍅 Pomodoro App</title>
-  <script src="app.js"></script>
+  <script src="app.js" defer></script>
   <link rel="icon" href="./assets/images/favicon.webp">
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,12 +13,16 @@
 </head>
 <body>
   <header>
-    <aside></aside>
+    <aside>
+    </aside>
     <h1>🍅 Pomodoro App</h1>
     <aside>
       <button id="dark-light-mode">🌓</button>
     </aside>
   </header>
+  <div id="side-menu" class="side-menu">
+
+  </div>
   <main>
     <section id="parameters" hidden>
       <h2>Parámetros</h2>
@@ -57,7 +61,7 @@
       </div>
     </section>
     <section id="timer-section">
-      <h2>⏱️ Temporizador</h2>
+      <h2>⏱️ Temporizador <button id="temp-settings">🛠️</button></h2>
       <div id="timer-container">
         <div id="timer-circle">
           <div id="timer"></div>
@@ -81,8 +85,6 @@
         </div>
       </div>
     </section>
-    <div>
-    </div>
   </main>
   <footer>
     <p class="footer-text">2025 Pomodoro App. <img src="./assets/images/favicon.webp" alt="favicon" width="20" height="20"> Developed by <a href="https://javierpiqueras.com" target="_blank">Javier Piqueras Martínez</a></p>

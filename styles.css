@@ -186,6 +186,23 @@ footer {
   transition: background-color 0.3s, transform 0.3s;
 }
 
+/* Estilos para el menú desplazable */
+.side-menu {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: -250px;
+  background-color: #B7B7B7;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.side-menu.open {
+  left: 0;
+}
+
 .footer-text {
   display: flex;
   flex-direction: row;
@@ -203,7 +220,7 @@ body.dark-mode a {
   color: #989898;
 }
 
-body.dark-mode footer {
+body.dark-mode .side-menu, footer {
   background: #494949;
 }
 
@@ -229,4 +246,8 @@ body.dark-mode button:active {
   body {
     justify-content: flex-start;
   }
+}
+
+#temp-settings {
+  width: auto;
 }

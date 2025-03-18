@@ -173,6 +173,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
   })
 
+  // Controlar la apertura y cierre del menú
+  const menuToggle = document.getElementById('temp-settings');
+  const sideMenu = document.getElementById('side-menu');
+  menuToggle.addEventListener('click', () => {
+    sideMenu.classList.toggle('open');
+  });
+
   // Initial functions
   handleChangeMode()
   setStep({reload: true, autoStart: false});
