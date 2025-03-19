@@ -4,9 +4,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const reinitializeSound = new Audio('./assets/sounds/trash.mp3');
   const restartSound = new Audio('./assets/sounds/backwards.mp3');
   const nextStepSound = new Audio('./assets/sounds/whistle.mp3');
-  
+
   var auto_start = document.getElementById('auto-start').checked;
-  
+
   var STEPS = loadStepsFromInterval(Number(localStorage.getItem('pomodoroApp.steps')));
   var USER_STUDY = Number(localStorage.getItem('pomodoroApp.userStudyTime') || 25);
   var USER_BREAK_1 = Number(localStorage.getItem('pomodoroApp.userBreak1Time') || 5);
@@ -26,9 +26,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
   var darkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
   // Set the step
-  function setStep({reload, autoStart}) {
+  function setStep({ reload, autoStart }) {
     if (!reload) {
-      if(STEPS[step] === 'USER_STUDY') {
+      if (STEPS[step] === 'USER_STUDY') {
         updateTotalPomodoros(totalPomodoros + 1);
       }
       step++;
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       time--;
       updateTotalTime(totalTime + 1);
       updateTimer();
-      if(time === 10) {
+      if (time === 10) {
         playTimerSound();
       }
       if (time < 0) {
@@ -65,11 +65,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
   // Update the timer
   function updateTimer() {
     // Update main timer
-    updateTimerValues({htmlId: 'timer', value: time});
+    updateTimerValues({ htmlId: 'timer', value: time });
     // Update the Page Title
-    updateTimerValues({htmlId: 'title', value: time, isTitle: true});
+    updateTimerValues({ htmlId: 'title', value: time, isTitle: true });
     // Update the global timer
-    updateTimerValues({htmlId: 'total-time', value: totalTime});
+    updateTimerValues({ htmlId: 'total-time', value: totalTime });
   }
 
   // Pause the timer that can be resumed
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('pause-resume-btn').removeEventListener('click', handlePauseTimer);
     document.getElementById('pause-resume-btn').innerHTML = 'Empezar';
     document.getElementById('pause-resume-btn').addEventListener('click', handleStartTimer);
-    setStep({reload: reload, autoStart: autoStart});
+    setStep({ reload: reload, autoStart: autoStart });
   }
 
   //Update total pomodoros
@@ -97,25 +97,25 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }
 
   // Update timer values
-  function updateTimerValues({htmlId, value, isTitle}) {
+  function updateTimerValues({ htmlId, value, isTitle }) {
     let hours = Math.floor(value / 60 / 60);
     let minutes = Math.floor(value / 60) % 60;
     let seconds = value % 60;
     minutes = hours && minutes < 10 ? `0${minutes}` : minutes;
     seconds = seconds < 10 ? `0${seconds}` : seconds;
     let displayValue = `${hours ? hours + ':' : ''}${minutes}:${seconds}`;
-  
+
     if (isTitle && document.hidden) {
       document.getElementById(htmlId).innerHTML = `(${displayValue}) 🍅 Pomodoro App`;
-    } else if(!isTitle) {
+    } else if (!isTitle) {
       document.getElementById(htmlId).innerHTML = displayValue;
     }
   }
 
   function loadStepsFromInterval(interval) {
-    if(interval){
+    if (interval) {
       let steps = [];
-      for(i = 0; i < interval; i++) {
+      for (i = 0; i < interval; i++) {
         steps = steps.concat(i === interval - 1 ? ['USER_STUDY', 'USER_BREAK_2'] : ['USER_STUDY', 'USER_BREAK_1'])
       }
       return steps;
@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('step-icon').innerHTML = STEPS[step] === 'USER_STUDY' ? '🙇🏻‍♂️' : '☕️';
   }
 
-  function loadInputTimeValues(){
+  function loadInputTimeValues() {
     document.getElementById('study-time').value = USER_STUDY;
     document.getElementById('short-break').value = USER_BREAK_1;
     document.getElementById('long-break').value = USER_BREAK_2;
@@ -225,5 +225,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
   // Initial functions
   handleChangeMode()
   loadInputTimeValues()
-  setStep({reload: true, autoStart: false});
+  setStep({ reload: true, autoStart: false });
 });
